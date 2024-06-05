@@ -173,4 +173,25 @@
     height: 100%;
     overflow: hidden;
   }
-  
+  /* Добавьте эти стили в конец файла style.css */
+.suggestions {
+  position: absolute;
+  background-color: white;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.suggestions li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.suggestions li:hover {
+  background-color: #eee;
+}

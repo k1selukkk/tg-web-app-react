@@ -1,31 +1,24 @@
 import React from 'react';
 
-function getClassByRate(vote) {
-  if (vote >= 7) {
-    return "green";
-  } else if (vote > 5) {
-    return "orange";
-  } else {
-    return "red";
-  }
-}
-
-function Movie({ movie, onClick }) {
+function Modal({ movie, onClose }) {
   return (
-    <div className="movie" onClick={onClick}>
-      <div className="movie__cover-inner">
-        <img src={movie.posterUrlPreview} className="movie__cover" alt={movie.nameRu} />
-        <div className="movie__cover--darkened"></div>
-      </div>
-      <div className="movie__info">
-        <div className="movie__title">{movie.nameRu}</div>
-        <div className="movie__category">{movie.genres.map(genre => ` ${genre.genre}`)}</div>
-        {movie.rating && (
-          <div className={`movie__average movie__average--${getClassByRate(movie.rating)}`}>{movie.rating}</div>
-        )}
+    <div className="modal modal--show" onClick={onClose}>
+      <div className="modal__card" onClick={e => e.stopPropagation()}>
+        <img className="modal__movie-backdrop" src={movie.posterUrl} alt="" />
+        <h2>
+          <span className="modal__movie-title">{movie.nameRu}</span>
+          <span className="modal__movie-release-year"> - {movie.year}</span>
+        </h2>
+        <ul className="modal__movie-info">
+          <li className="modal__movie-genre">Жанр - {movie.genres.map(el => <span key={el.genre}>{el.genre}</span>)}</li>
+          {movie.filmLength && <li className="modal__movie-runtime">Время - {movie.filmLength} минут</li>}
+          <li>Сайт: <a className="modal__movie-site" href={movie.webUrl}>{movie.webUrl}</a></li>
+          <li className="modal__movie-overview">Описание - {movie.description}</li>
+        </ul>
+        <button type="button" className="modal__button-close" onClick={onClose}>Закрыть</button>
       </div>
     </div>
   );
 }
 
-export default Movie;
+export default Modal;

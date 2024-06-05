@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './Header';
 import MoviesContainer from './MoviesContainer';
 
 function App() {
+  const [searchQuery, setSearchQuery] = useState('');
+
   return (
     <div>
-      <Header />
-      <MoviesContainer />
+      <Header onSearch={setSearchQuery} />
+      <MoviesContainer searchQuery={searchQuery} />
     </div>
   );
 }

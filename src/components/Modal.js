@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 function Modal({ movie, onClose }) {
   if (!movie || !movie.genres) return null; // Prevent rendering if no movie is selected or genres are not defined
+
+  useEffect(() => {
+    const sendMovieDataToTelegram = () => {
+      if (window.Telegram.WebApp) {
+        window.Telegram.WebApp.sendData(JSON.stringify({
+          movieId: movie.id,
+          title: movie.nameRu,
+          year: movie.year,
+          genres: movie.genres.map(genre => genre.genre).join(', '),
+          description: movie.description,
+          rating: movie.rating,
+          posterUrl: movie.posterUrl,
+        }));
+      }
+    };
+
+    sendMovieDataToTelegram();
+  }, [movie]);
 
   return (
     <div className="modal modal--show" onClick={onClose}>

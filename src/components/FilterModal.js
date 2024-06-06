@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 const API_KEY = "8c8e1a50-6322-4135-8875-5d40a5420d86";
 const API_URL_GENRES = "https://kinopoiskapiunofficial.tech/api/v2.2/films/filters";
 
-function FilterModal({ onClose, onApplyFilters }) {
+const FilterModal = ({ onApplyFilters }) => {
   const [genres, setGenres] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState('');
 
@@ -25,12 +25,11 @@ function FilterModal({ onClose, onApplyFilters }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     onApplyFilters({ genre: selectedGenre });
-    onClose();
   };
 
   return (
-    <div className="filter-modal" onClick={onClose}>
-      <div className="filter-modal__content" onClick={e => e.stopPropagation()}>
+    <div className="filter-modal">
+      <div className="filter-modal__content">
         <h2>Фильтры</h2>
         <form onSubmit={handleSubmit}>
           <div>
@@ -44,10 +43,9 @@ function FilterModal({ onClose, onApplyFilters }) {
           </div>
           <button type="submit">Применить</button>
         </form>
-        <button onClick={onClose}>Закрыть</button>
       </div>
     </div>
   );
-}
+};
 
 export default FilterModal;

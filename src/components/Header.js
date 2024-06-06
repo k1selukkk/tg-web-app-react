@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
 
 const API_KEY = "8c8e1a50-6322-4135-8875-5d40a5420d86";
 const API_URL_SEARCH = "https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=";
 
-function Header({ onSearch }) {
+function Header({ onSearch, onOpenFilter }) {
   const [input, setInput] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
@@ -39,6 +41,9 @@ function Header({ onSearch }) {
   return (
     <header className="container">
       <div className="header__content">
+        <button className="filter-button" onClick={onOpenFilter}>
+          <FontAwesomeIcon icon={faFilter} />
+        </button>
         <a href="/" className="header__logo">MovieApp</a>
         <form onSubmit={handleSubmit}>
           <input

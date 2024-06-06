@@ -195,3 +195,90 @@
 .suggestions li:hover {
   background-color: #eee;
 }
+
+/* Стили для кнопки фильтра */
+.filter-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 24px;
+  margin-right: 20px;
+}
+
+/* Стили для модального окна фильтрации */
+.filter-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.filter-modal__content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-modal__content h2 {
+  margin-bottom: 20px;
+}
+
+.filter-modal__content form > div {
+  margin-bottom: 15px;
+}
+
+.filter-modal__content form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.filter-modal__content form input,
+.filter-modal__content form select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.filter-modal__content button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background: #1a191f;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.filter-modal__content button:hover {
+  background: #333;
+}
+
+/* Стили для модального окна фильма */
+.modal--show {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5); /* Ensure it covers the background */
+}
+
+.modal__card {
+  background-color: #1a191f;
+  max-width: 600px;
+  padding: 16px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  z-index: 1001; /* Ensure it's above the backdrop */
+}
+

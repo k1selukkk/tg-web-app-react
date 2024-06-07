@@ -10,11 +10,42 @@ function getClassByRate(vote) {
   }
 }
 
-function Movie({ movie, onClick }) {
-  const rating = movie.rating || movie.ratingKinopoisk || movie.ratingImdb; // Убедимся, что рейтинг отображается независимо от структуры данных
+function Movie({ movie }) {
+  const rating = movie.rating || movie.ratingKinopoisk || movie.ratingImdb;
+
+  const handleClick = async () => {
+    const tg = window.Telegram.WebApp;
+    const chatId = tg.initDataUnsafe.user.id;
+
+    const movieDetails = `
+      ${movie.nameRu} - ${movie.year}
+      Жанр - ${movie.genres.map(el => el.genre).join(', ')}
+      Время - ${movie.filmLength} минут
+      Сайт: ${movie.webUrl}
+      Описание - ${movie.description}
+    `;
+
+    try {
+      const response = await fetch('https://your-server-url.com/sendMovieDetails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ chatId, movieDetails }),
+      });
+
+      if (response.ok) {
+        console.log('Movie details sent successfully');
+      } else {
+        console.error('Failed to send movie details');
+      }
+    } catch (error) {
+      console.error('Failed to send movie details', error);
+    }
+  };
 
   return (
-    <div className="movie" onClick={onClick}>
+    <div className="movie" onClick={handleClick}>
       <div className="movie__cover-inner">
         <img src={movie.posterUrlPreview || movie.posterUrl} className="movie__cover" alt={movie.nameRu || movie.nameEn} />
         <div className="movie__cover--darkened"></div>

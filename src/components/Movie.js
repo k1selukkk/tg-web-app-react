@@ -26,7 +26,7 @@ function Movie({ movie }) {
     `;
 
     try {
-      const response = await fetch('https://your-server-url.com/sendMovieDetails', {
+      const response = await fetch('http://localhost:3000/sendMovieDetails', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

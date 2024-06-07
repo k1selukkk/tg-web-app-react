@@ -19,7 +19,7 @@ function Movie({ movie }) {
 
     const movieDetails = `
       ${movie.nameRu} - ${movie.year}
-      Жанр - ${movie.genres.map(el => el.genre).join(', ')}
+      Жан - ${movie.genres.map(el => el.genre).join(', ')}
       Время - ${movie.filmLength} минут
       Сайт: ${movie.webUrl}
       Описание - ${movie.description}

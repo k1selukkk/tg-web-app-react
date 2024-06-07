@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Movie from './Movie';
-import Modal from './Modal';
 
 const API_KEY = "8c8e1a50-6322-4135-8875-5d40a5420d86";
 const API_URL_POPULAR = "https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=1";
@@ -51,7 +50,7 @@ function MoviesContainer({ searchQuery, filters }) {
     }
   };
 
-  const handleModal = async (id) => {
+  const handleCardClick = async (id) => {
     const response = await fetch(`${API_URL_MOVIE_DETAILS}${id}`, {
       headers: {
         "Content-Type": "application/json",
@@ -59,21 +58,33 @@ function MoviesContainer({ searchQuery, filters }) {
       },
     });
     const movie = await response.json();
-    setSelectedMovie(movie);
+    console.log('Movie details:', movie); // Добавим лог для проверки данных
+    sendMovieDetailsToTelegramBot(movie);
   };
 
-  const closeModal = () => {
-    setSelectedMovie(null);
+  const sendMovieDetailsToTelegramBot = (movie) => {
+    fetch('http://localhost:3000/sendMovieDetails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(movie),
+    }).then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
 
   return (
     <div className="container">
       <div className="movies">
         {movies.map(movie => (
-          <Movie key={movie.filmId || movie.kinopoiskId} movie={movie} onClick={() => handleModal(movie.filmId || movie.kinopoiskId)} />
+          <Movie key={movie.filmId || movie.kinopoiskId} movie={movie} onClick={() => handleCardClick(movie.filmId || movie.kinopoiskId)} />
         ))}
       </div>
-      {selectedMovie && <Modal movie={selectedMovie} onClose={closeModal} />}
     </div>
   );
 }

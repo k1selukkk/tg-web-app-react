@@ -1,13 +1,10 @@
 import React from 'react';
 
-function Modal({ movie, onClose, onSendToBot }) {
+function Modal({ movie, onClose }) {
   if (!movie || !movie.genres) return null; // Prevent rendering if no movie is selected or genres are not defined
 
   return (
-    <div className="modal modal--show" onClick={(e) => {
-      onClose();
-      onSendToBot(movie);
-    }}>
+    <div className="modal modal--show" onClick={onClose}>
       <div className="modal__card" onClick={e => e.stopPropagation()}>
         <img className="modal__movie-backdrop" src={movie.posterUrl} alt="" />
         <h2>
@@ -27,3 +24,4 @@ function Modal({ movie, onClose, onSendToBot }) {
 }
 
 export default Modal;
+

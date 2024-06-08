@@ -11,7 +11,7 @@ function getClassByRate(vote) {
 }
 
 function Movie({ movie, onClick }) {
-  const rating = movie.rating || movie.ratingKinopoisk || movie.ratingImdb; // Убедимся, что рейтинг отображается независимо от структуры данных
+  const rating = movie.rating || movie.ratingKinopoisk || movie.ratingImdb;
 
   return (
     <div className="movie" onClick={onClick}>

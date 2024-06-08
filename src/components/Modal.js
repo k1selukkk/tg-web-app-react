@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Modal({ movie, onClose }) {
-  if (!movie || !movie.genres) return null; // Prevent rendering if no movie is selected or genres are not defined
+  if (!movie || !movie.genres) return null; 
 
   return (
     <div className="modal modal--show" onClick={onClose}>

@@ -12,7 +12,8 @@ function Header({ onSearch, onOpenFilter }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     onSearch(input);
-    setSuggestions([]);
+    setInput(""); // Очистить поле ввода после отправки формы
+    setSuggestions([]); // Очистить подсказки
   };
 
   const fetchSuggestions = async (query) => {
@@ -58,8 +59,8 @@ function Header({ onSearch, onOpenFilter }) {
               {suggestions.map(suggestion => (
                 <li key={suggestion.filmId} onClick={() => {
                   onSearch(suggestion.nameRu);
-                  setInput(suggestion.nameRu);
-                  setSuggestions([]);
+                  setInput("");
+                  setSuggestions([]); // Очистить подсказки после выбора фильма
                 }}>
                   {suggestion.nameRu} ({suggestion.rating})
                 </li>

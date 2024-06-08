@@ -202,7 +202,8 @@
   border: none;
   color: white;
   cursor: pointer;
-  font-size: 24px;
+  font-size: 24git status
+  px;
   margin-right: 20px;
 }
 
@@ -282,3 +283,50 @@
   z-index: 1001; /* Ensure it's above the backdrop */
 }
 
+/* Стили для кнопки фильтра */
+
+
+/* Стили для подсказок */
+.suggestions li:hover {
+  background-color: #ffd80e; /* Цвет фона при наведении */
+}
+
+/* Стили для фильмов */
+.movie {
+  transition: transform 0.3s;
+}
+
+.movie:hover {
+  transform: scale(1.05); /* Увеличение размера при наведении */
+  border: 2px solid #ffd80e; /* Рамка при наведении */
+}
+
+/* Стили для модального окна фильтра */
+.filter-modal__content {
+  border: 2px solid #ffd80e; /* Рамка для модального окна фильтра */
+  transition: border-color 0.3s;
+}
+
+.filter-modal__content:hover {
+  border-color: #ff8c00; /* Изменение цвета рамки при наведении */
+}
+
+/* Стили для модального окна фильма */
+.modal__card {
+  border: 2px solid #ffd80e; /* Рамка для модального окна фильма */
+  transition: border-color 0.3s;
+}
+
+.modal__card:hover {
+  border-color: #ff8c00; /* Изменение цвета рамки при наведении */
+}
+
+/* Стили для кнопок */
+button {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+  background-color: #ffd80e; /* Цвет фона при наведении */
+  color: #1a191f; /* Цвет текста при наведении */
+}
